@@ -1,0 +1,6 @@
+asyncpg
+fastapi[all]
+fastmcp
+uvicorn
+starlette
+psycopg[binary,pool]

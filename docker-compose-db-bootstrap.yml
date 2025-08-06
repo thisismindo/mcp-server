@@ -1,0 +1,30 @@
+services:
+  demodb-node1:
+    image: cockroachdb/cockroach:v25.2.3
+    command:
+      - start
+      - --insecure
+      - --join=demodb-node1
+      - --listen-addr=0.0.0.0:26257
+      - --advertise-addr=demodb-node1:26257
+      - --http-addr=0.0.0.0:8088
+      - --max-offset=3s
+    hostname: demodb-node1
+    ports:
+      - "26257:26257"
+      - "8088:8088"
+    networks:
+      - net_roachnet
+    volumes:
+      - demodb-data1:/cockroach/cockroach-data
+    deploy:
+      placement:
+        constraints:
+          - node.role == manager
+
+networks:
+  net_roachnet:
+    external: true
+
+volumes:
+  demodb-data1:

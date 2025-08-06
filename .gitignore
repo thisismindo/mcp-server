@@ -1,0 +1,7 @@
+.git/
+.env
+*.secret
+__pycache__/
+.DS_Store
+.pytest_cache/
+Pipfile
