@@ -9,7 +9,7 @@ from src.models.user_dal import UserDAL
 from src.dependencies import get_dal, get_db_client_rw, get_db_client_ro
 from src.helpers.common import custom_serializer
 from src.constants import IS_TRUE, IS_FALSE, GET_USERS_OP_ID, GET_USER_OP_ID, \
-    POST_USER_SIGNUP_OP_ID, PUT_USER_OP_ID, DELETE_USER_OP_ID
+    POST_USER_SIGNUP_OP_ID, PUT_USER_OP_ID, DELETE_USER_OP_ID, USERS
 
 class UsersRouter:
     """Users router class
@@ -20,15 +20,15 @@ class UsersRouter:
         self.router: APIRouter = APIRouter()
 
         self.router.add_api_route("/", self.get_users, methods=["GET"], operation_id=GET_USERS_OP_ID,
-                                  tags=[GET_USERS_OP_ID], response_model=List[UserResponse])
+                                  tags=[USERS], response_model=List[UserResponse])
         self.router.add_api_route("/{id}", self.get_user, methods=["GET"], operation_id=GET_USER_OP_ID,
-                                  tags=[GET_USER_OP_ID], response_model=UserResponse)
+                                  tags=[USERS], response_model=UserResponse)
         self.router.add_api_route("/", self.signup, methods=["POST"], operation_id=POST_USER_SIGNUP_OP_ID,
-                                  tags=[POST_USER_SIGNUP_OP_ID], response_model=SignupResponse)
+                                  tags=[USERS], response_model=SignupResponse)
         self.router.add_api_route("/{id}", self.update_user, methods=["PUT"], operation_id=PUT_USER_OP_ID,
-                                  tags=[PUT_USER_OP_ID], response_model=UpdateUserResponse)
+                                  tags=[USERS], response_model=UpdateUserResponse)
         self.router.add_api_route("/{id}", self.delete_user, methods=["DELETE"], operation_id=DELETE_USER_OP_ID,
-                                  tags=[DELETE_USER_OP_ID], response_model=UserDefaultResponse)
+                                  tags=[USERS], response_model=UserDefaultResponse)
 
     async def _get_user_data(self, dal: UserDAL, user_id: str):
         """Core logic to retrieve and serialize user data.
@@ -47,19 +47,6 @@ class UsersRouter:
                 ):
         """Sign up new user
         """
-        errors: List = []
-        if not user.username.isalnum():
-            errors.append('username contains illegal characters.')
-        if len(errors):
-            return JSONResponse(
-                status_code=status.HTTP_400_BAD_REQUEST,
-                content={
-                    'status': IS_FALSE,
-                    'message': errors,
-                    'response': {}
-                }
-            )
-
         new_user_uuid = await dal.new_user(user=user)
         user_data = await self._get_user_data(dal=dal, user_id=new_user_uuid)
         return JSONResponse(
@@ -125,21 +112,6 @@ class UsersRouter:
                 ):
         """Update user
         """
-        errors: List = []
-        if not user.id:
-            errors.append('user id is required.')
-        if not user.email_address:
-            errors.append('email address is required.')
-        if len(errors):
-            return JSONResponse(
-                status_code=status.HTTP_400_BAD_REQUEST,
-                content={
-                    'status': IS_FALSE,
-                    'message': errors,
-                    'response': {}
-                }
-            )
-
         await dal.update_user(user=user)
         user_data = await self._get_user_data(dal=dal, user_id=user.id)
         return JSONResponse(

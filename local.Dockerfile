@@ -6,7 +6,7 @@ ENV PYTHONPATH=/app:$PYTHONPATH
 ENV PYTHONUNBUFFERED=1
 
 COPY ./src /app/src
-RUN pip install -r /app/src/requirements.txt
+RUN pip install --no-cache -r /app/src/requirements.txt
 
 FROM base_app AS full_app
 

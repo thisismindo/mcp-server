@@ -14,6 +14,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Bugs/Hotfix
 
 ### Updated
+08/12/2025
+- validate input using pydantic and update data type.
+- rebuild image when starting the mcp server.
+- reorganize the routes into new groups.
 
 ### Added
 08/06/2025

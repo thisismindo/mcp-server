@@ -1,30 +1,38 @@
 """Users model
 """
 from typing import Optional, List, Dict
-from pydantic import BaseModel
+from pydantic import BaseModel, UUID4, StrictStr, EmailStr, field_validator
+from datetime import datetime
 from src.constants import IS_TRUE
 
 class CreateUser(BaseModel):
     """CreateUser basemodel
     """
-    username: str
-    email_address: str
+    username: StrictStr
+    email_address: EmailStr
     active: Optional[bool] = IS_TRUE
+
+    @field_validator('username')
+    @classmethod
+    def validate_username(cls, v: str) -> str:
+        if not v.isalnum():
+            raise ValueError('Username must be alphanumeric')
+        return v
 
 class UpdateUser(BaseModel):
     """UpdateUser basemodel
     """
-    id: str
-    email_address: str
+    id: UUID4
+    email_address: EmailStr
 
 class UserResponse(BaseModel):
     """UserResponse basemodel
     """
-    id: str
-    username: str
-    email_address: str
-    created_at: str
-    updated_at: str
+    id: UUID4
+    username: StrictStr
+    email_address: EmailStr
+    created_at: datetime
+    updated_at: datetime
 
 class UpdateUserResponse(BaseModel):
     """UpdateUserResponse basemodel

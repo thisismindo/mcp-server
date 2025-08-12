@@ -146,6 +146,8 @@ start-mcp-server:
 	@echo "Start MCP server..."
 	@make up-local-db-bootstrap
 	@sleep 5
+	@make build-backend-local
+	@sleep 5
 	@make up-local-db
 	@sleep 10
 	@make up-backend-local

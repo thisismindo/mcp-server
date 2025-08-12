@@ -11,6 +11,8 @@ DB_RO_VAR: str = 'DATABASE_RO_DSN'
 DB_RW_VAR: str = 'DATABASE_RW_DSN'
 
 # MCP Tags
+USERS: str = 'User'
+HEALTHCHECK: str = 'Health Check'
 GET_API_STATUS_OP_ID: str = 'get_api_status'
 GET_USER_OP_ID: str = 'get_user'
 GET_USERS_OP_ID: str = 'get_users'
