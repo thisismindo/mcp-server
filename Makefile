@@ -18,6 +18,7 @@ set-env-vars-local:
 	@echo "Setting local environment variables..." && \
 	echo "DATABASE_RO_DSN=postgresql://reader_user@demodb-node1:26257/demodb?sslmode=disable" > .env && \
 	echo "DATABASE_RW_DSN=postgresql://writer_user@demodb-node1:26257/demodb?sslmode=disable" >> .env && \
+	echo "MCP_SERVER_HOST=http://localhost:8080" >> .env && \
 	echo "Generated .env file"
 
 up-backend-local:
@@ -32,6 +33,16 @@ build-backend-local: set-env-vars-local
     set -a && source .env && set +a && docker compose -f docker-compose-backend.yml build \
         --no-cache \
         mcp-server1
+
+start-adk-web:
+	@echo Start ADK Web
+	@nohup adk web &
+	@echo ADK Web successfully started
+
+stop-adk-web:
+	@cho Stop ADK web
+	@-pkill -f "adk web"
+	@echo ADK Web successfully stopped
 
 up-local-db-bootstrap:
 	@echo "Starting demodb-node1 only..." && \

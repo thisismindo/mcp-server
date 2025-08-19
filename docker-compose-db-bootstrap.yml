@@ -1,6 +1,6 @@
 services:
   demodb-node1:
-    image: cockroachdb/cockroach:v25.2.3
+    image: cockroachdb/cockroach:v25.3.0
     command:
       - start
       - --insecure

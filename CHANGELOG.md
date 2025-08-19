@@ -14,12 +14,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Bugs/Hotfix
 
 ### Updated
+08/19/2025
+- bump cockroachdb to `v25.3.0`.
+
 08/12/2025
 - validate input using pydantic and update data type.
 - rebuild image when starting the mcp server.
 - reorganize the routes into new groups.
 
 ### Added
+08/19/2025
+- implement agent using Google Agent Development Kit (ADK).
+
 08/06/2025
 - initial implementation of MCP server using FastAPI.
 - implement a sample agent that uses a mock LLM and an MCP server as its tools.

@@ -59,6 +59,10 @@ If you are using the Cursor client, you can configure it to connect to your loca
 
 For more details on the Cursor client, refer to the [official documentation](https://docs.cursor.com/en/context/mcp).
 
+#### ADK Agent
+
+To integrate this with the Google Agent Development Kit (ADK), you can find instructions in the **README.md** file located in the `/adk-agent/` directory.
+
 #### Custom Agent
 If you'd like to integrate this with your own Agent, you can find a helpful example in the [README.md](/examples/README.md) file. This example demonstrates how to set it up and use it as one of your tools.
 
