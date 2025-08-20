@@ -16,7 +16,7 @@ This project contains an agent system built with the Google Agent Development Ki
 
 1.  Navigate to the `adk-agent` directory: `cd adk-agent`
 2.  Rename the sample environment file: `mv .env.sample .env`
-3.  Add your **`GOOGLE_API_KEY`** to the `.env` file.
+3.  Add your **`GOOGLE_API_KEY`** to the `.env` file. Navigate to [https://aistudio.google.com/app/apikey](https://aistudio.google.com/app/apikey) in your browser to create Google API Key.
 4.  Install the required Python dependencies: `pip install -r requirements.txt`
 
 ***
@@ -44,7 +44,7 @@ Navigate to **http://localhost:8000/dev-ui/?app=adk-agent** in your browser to a
   </div>
 </div>
 
-### Start the Agent
+### Stop the Agent
 
 Use this command to gracefully stop the ADK web server running in the background.
 

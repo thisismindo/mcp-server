@@ -14,6 +14,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Bugs/Hotfix
 
 ### Updated
+08/20/2025
+- update `adk-agent` README.md
+
 08/19/2025
 - bump cockroachdb to `v25.3.0`.
 
